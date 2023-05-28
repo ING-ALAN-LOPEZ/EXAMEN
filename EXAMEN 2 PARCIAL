@@ -1,0 +1,631 @@
+create table alum_tesoharvard (id number (3) unique,
+Matricula number (9),
+Nombre varchar2 (30),
+Apell_pa varchar2 (30),
+Apell_ma varchar2 (30),
+Carrera varchar2 (30),                                    
+Grupo varchar2 (5),
+Semestre number (2),
+Check (Semestre <=9),
+Edificio varchar2 (1),
+Promedio number (3));
+alter table alum_tesoharvard 
+add primary key (Matricula);
+select * from alum_tesoharvard;     
+--CREAMOS LA TABLA ALUMNOS PARA PODER INSERTAR LOS DATOS DE LOS ALUMNOS Y DE AHI CREAR EL PROCEDIMIENTO PARA LA INSERCION-- 
+
+ create or replace procedure pa_insert_alumnos --NOMBRE DEL PROCEDIMENTO--
+(m_id in number default 0,m_Matricula in number default 0, m_Nombre in varchar2 default 'nombre', m_Apell_pa in varchar2 default 'apellido_pa', m_Apell_ma in varchar2 default 'apellido_ma',
+ m_Carrera in varchar2 default 'carrera', m_Grupo in varchar2 default '0000', m_Semestre in number default 1, m_Edificio in varchar2 default '#', 
+ m_Promedio in number default 0) --AQUI LE DECIMOS QUE CREE ESTAS COLUMNAS CON ESOS ATRIBUTOS--
+ as 
+ begin 
+ insert into alum_tesoharvard values (m_id,m_Matricula, m_Nombre, m_Apell_pa, m_Apell_ma, m_Carrera, m_Grupo,m_Semestre, m_Edificio, m_promedio);
+ end; --DESPUES LE INDICAMOS QUE VA A INSERTAR EN MI TABLA ALUMNOS LOS SIGUIENTES VALORES--
+ 
+ execute pa_insert_alumnos (2,201020058,'Alan','Lopez','Chavez','ISC','6S11',6 ,'A' , 85); --AQUI HACEMOS LA INSERCION CUMPLIENDO LOS ATRIBUTOS DE LOS DATOS
+ --CREAMOS EL PROCEDIMIENTO PARA INSERTAR LOS DATOS--
+
+ --primer semestre-----
+ select * from ISC a JOIN TICS b on a.grupo like '1%' and b.grupo like '1%' join LC c on c.grupo like '1%' join LG d on d.grupo like '1%' 
+ join IND e on e.grupo like '1%' join IER f on f.grupo like '1%' join IAD g on g.grupo like '1%'
+ join ISA h on h.grupo like '1%' join IA i on i.grupo like '1%'; 
+ --segundo semestre-----
+ select * from ISC a JOIN TICS b on a.grupo like '2%' and b.grupo like '2%' join LC c on c.grupo like '2%' join LG d on d.grupo like '2%' 
+ join IND e on e.grupo like '2%' join IER f on f.grupo like '2%' join IAD g on g.grupo like '2%'
+ join ISA h on h.grupo like '2%' join IA i on i.grupo like '2%'; 
+--tercer semestre-----
+ select * from ISC a JOIN TICS b on a.grupo like '3%' and b.grupo like '3%' join LC c on c.grupo like '3%' join LG d on d.grupo like '3%' 
+ join IND e on e.grupo like '3%' join IER f on f.grupo like '3%' join IAD g on g.grupo like '3%'
+ join ISA h on h.grupo like '3%' join IA i on i.grupo like '3%'; 
+--cuarto semestre-----
+ select ID, Nombre_Alumno, grupo from ISC a JOIN TICS b on a.grupo like '4%' and b.grupo like '4%' join LC c on c.grupo like '4%' join LG d on d.grupo like '4%' 
+ join IND e on e.grupo like '4%' join IER f on f.grupo like '4%' join IAD g on g.grupo like '4%'
+ join ISA h on h.grupo like '4%' join IA i on i.grupo like '4%'; 
+-- quinto semestre-----
+ select  * from ISC a JOIN TICS b on a.Grupo like '6S11' and b.Grupo like '6T11';   
+ select  * from ISC a JOIN TICS b on a.grupo like '5%' and b.grupo like '5%' join LC c on c.grupo like '5%' join LG d on d.grupo like '5%'
+ join IND e on e.grupo like '5%' join IER f on f.grupo like '5%' join IAD g on g.grupo like '5%'
+ join ISA h on h.grupo like '5%' join IA i on i.grupo like '5%'; 
+--sexto semestre-----
+ select * from ISC a JOIN TICS b on a.Grupo like '6' and b.Grupo like '6' join LC c on c.Grupo like '6' join LG d on d.Grupo like '6' 
+ join IND e on e.Grupo like '6' join IER f on f.Grupo like '6' join IAD g on g.Grupo like '6'
+ join ISA h on h.Grupo like '6' join IA i on i.Grupo like '6'; 
+-- septimo semestre-----
+ select ID, Nombre_Alumno, grupo from ISC a JOIN TICS b on a.grupo like '7%' and b.grupo like '7%' join LC c on c.grupo like '7%' join LG d on d.grupo like '7%' 
+ join IND e on e.grupo like '7%' join IER f on f.grupo like '7%' join IAD g on g.grupo like '7%'
+ join ISA h on h.grupo like '7%' join IA i on i.grupo like '7%'; 
+--octavo semestre-----
+  select ID, Nombre_Alumno, grupo from ISC a JOIN TICS b on a.grupo like '8%' and b.grupo like '8%' join LC c on c.grupo like '8%' join LG d on d.grupo like '8%' 
+ join IND e on e.grupo like '8%' join IER f on f.grupo like '8%' join IAD g on g.grupo like '8%'
+ join ISA h on h.grupo like '8%' join IA i on i.grupo like '8%';
+--noveno semestre-----
+  select ID, Nombre_Alumno, grupo from ISC a JOIN TICS b on a.grupo like '9%' and b.grupo like '9%' join LC c on c.grupo like '9%' join LG d on d.grupo like '9%' 
+ join IND e on e.grupo like '9%' join IER f on f.grupo like '9%' join IAD g on g.grupo like '9%'
+ join ISA h on h.grupo like '9%' join IA i on i.grupo like '9%';
+ --el sentencia JOIN por defecto, y consiste en combinar cada fila de una tabla con cada fila de la otra tabla, 
+ --seleccionado aquellas filas que cumplan una determinada condición.
+ --En ete caso les estamos diciendo que me va a mostrar a todos los alumnos de cierto semestre
+ 
+---Ingeniería en Sistemas Computacionales--ISC
+ create table ISC(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (4),
+ Edificio varchar2 (1));
+ --CREAMOS LAS TABLAS PARA CADA CARRERA PARA HACER EL PROCEDIMIENTO DE JALAR SUS DATOS PARA ORGANIZARLOS POR CARRERA
+create or replace procedure pa_alumnos_ISC
+as
+begin
+insert into ISC (id, matricula, Nombre_Alumno, Grupo, Edificio) --AQUI LE DECIMOS QUE VA A INSERTAR LOS DATOS AQUI
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Grupo, Edificio  from alum_tesoharvard --SELECCIONAMOS ESTOS DATOS DE LA TABLA ALUMNOS, PRINCIPAL
+where Carrera = 'ISC'; --SOLO CUANDO CARRERA SEA IGUAL A ISC, DESPUES A TICS, DESPUES A CONTA Y ASI PARA ORGANIZARLOS POR CARRERA, ES DECIR SOLO VA A JALAR Y INSERTAR ESOS DATOS SOLO CUANDO SEAN DE LA CARERA QUE INDICAMOS;
+end;
+
+execute pa_alumnos_ISC; --EJECUTAMOS EL PROCEDIMIENTO
+
+drop table ISC; --BORRAR TABLA
+
+select* from ISC; --MOSTRAR TABLA
+
+delete from ISC; --BORRAR  EL CONTENIDO DE LA TABLA
+---Ingeniería en Tecnologías de la Información y Comunicaciones---TICS-
+create table TICS(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (4),
+ Edificio varchar2 (1));
+
+create or replace procedure pa_alumnos_TICS
+as
+begin
+insert into TICS (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula,Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Grupo, Edificio  from alum_tesoharvard  
+where Carrera = 'TICS';
+end;
+
+execute pa_alumnos_TICS;
+
+select* from TICS;
+
+delete from TICS;
+--Licenciatura Contador Público--LC--
+create table LC(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (4),
+ Edificio varchar2 (1));
+
+create or replace procedure pa_alumnos_LC
+as
+begin
+insert into LC (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Grupo, Edificio  from alum_tesoharvard 
+where Carrera = 'LC';
+end;
+
+execute pa_alumnos_LC;
+
+select* from LC;
+
+delete from LC;
+---------------------------------------------------------------------------Licenciatura en Gastronomía--LG----
+create table LG(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (4),
+ Edificio varchar2 (1));
+ 
+create or replace procedure pa_alumnos_LG
+as
+begin
+insert into LG (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Grupo, Edificio  from alum_tesoharvard  
+where Carrera = 'LG';
+end;
+
+execute pa_alumnos_LG;
+
+select* from LG;
+
+delete from LG;
+---------------------------------------------------------------------------Ingenieria Industrial--IND---
+create table IND(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (4),
+ Edificio varchar2 (1));
+ 
+create or replace procedure pa_alumnos_IND
+as
+begin
+insert into IND (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma , Grupo, Edificio  from alum_tesoharvard 
+where Carrera = 'IND';
+end;
+execute pa_alumnos_IND;
+
+select* from IND;
+
+delete from IND;
+-------------------------------------------------------------------------Ingeniería en Energias Renovables--IER--
+create table IER(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (4),
+ Edificio varchar2 (1)); 
+ 
+create or replace procedure pa_alumnos_IER
+as
+begin
+insert into IER (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma , Grupo, Edificio  from alum_tesoharvard 
+where Carrera = 'IER';
+end;
+
+execute pa_alumnos_IER;
+
+select* from IER;
+
+delete from IER;
+-------------------------------------------------------------Ingeniería en Administración--IAD---
+create table IAD(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (5),
+ Edificio varchar2 (1));
+ 
+create or replace procedure pa_alumnos_IAD
+as
+begin
+insert into IAD (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma , Grupo, Edificio  from alum_tesoharvard 
+where Carrera = 'IAD';
+end;
+
+execute pa_alumnos_IAD;
+
+select* from IAD;
+
+delete from IAD;
+-----------------------------------------------------------Ingeniería en Sistemas Automotrices--ISA-----
+create table ISA(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (5),
+ Edificio varchar2 (1));
+ 
+create or replace procedure pa_alumnos_ISA
+as
+begin
+insert into ISA (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma , Grupo, Edificio  from alum_tesoharvard  
+where Carrera = 'ISA';
+end;
+
+execute pa_alumnos_ISA;
+
+select* from ISA;
+
+delete from ISA;
+---------------------------------------------------------------------Ingeniería Ambiental--IA---
+ create table IA(id number (3),
+ Matricula number (9),
+ Nombre_Alumno varchar2 (50),
+ Grupo varchar2 (5),
+ Edificio varchar2 (1));
+ 
+create or replace procedure pa_alumnos_IA
+as
+begin
+insert into IA (id, matricula, Nombre_Alumno, Grupo, Edificio)
+select id, Matricula, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma , Grupo, Edificio  from alum_tesoharvard 
+where Carrera = 'IA';
+end;
+
+execute pa_alumnos_IA;
+
+select * from IA;
+
+delete from IA;
+
+SELECT * from alum_tesoharvard
+where Semestre=2;
+
+
+--Here end the first exercise --
+
+create table profesores_tesoem (
+id number not null unique,
+Num_empleado number (9) ,
+Nombre varchar2 (30),
+Apell_pa varchar2 (30),
+Apell_ma varchar2 (30),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+
+select * from profesores_tesoem;
+
+delete from profesores_tesoem;
+drop table profesores_tesoem;
+
+create or replace procedure pa_insert_maestros
+(m_id in number default 0, m_Num_empleado in number default 0, m_nombre in varchar2 default 'nombre', m_Apell_pa in varchar2 default 'apellido_pa', 
+ m_Apell_ma in varchar2 default 'apellido_ma', m_carrera in varchar2 default 'carrera', m_Nombre_clase in varchar2 default 'clase', m_grupo in varchar2 default 'grupo')
+ as 
+ begin 
+ insert into profesores_tesoem values (m_id,m_Num_empleado, m_nombre, m_Apell_pa, m_Apell_ma, m_carrera, m_Nombre_clase, m_grupo);
+ end;
+ 
+ execute pa_insert_maestros (1,760,'Oscar Abimael','Sanchez','De los Santos','ISC','Fundamentos de Base de Datos','4S11');
+-----------Ingeniería en Sistemas Computacionales--ISC-
+create table profes_ISC(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+ 
+create or replace procedure pa_profes_ISC
+as
+begin
+insert into  profes_ISC (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'ISC';
+end;
+
+execute pa_profes_ISC;
+
+select* from profes_ISC;
+
+delete from profes_ISC;
+
+drop table profes_ISC;
+------Ingeniería en Tecnologías de la Información y Comunicaciones-
+create table profes_TICS(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+
+create or replace procedure pa_profes_TICS
+as
+begin
+insert into profes_TICS (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'TICS';
+end;
+
+execute pa_profes_TICS;
+
+select* from profes_TICS;
+
+delete from profes_TICS;
+-------Licenciatura Contador Público--LC-
+create table profes_LC(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+
+create or replace procedure pa_profes_LC
+as
+begin
+insert into profes_LC (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'LC';
+end;
+
+execute pa_profes_LC;
+
+select* from profes_LC;
+
+delete from profes_LC;
+
+drop table profes_LC;
+-------------------------------------------------------------Licenciatura en Gastronomía--LG-
+create table profes_LG(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+ 
+create or replace procedure pa_profes_LG
+as
+begin
+insert into profes_LG (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'LG';
+end;
+
+execute pa_profes_LG;
+
+select* from profes_LG;
+
+delete from profes_LG;
+--------------------------------------------Ingenieria Industrial--IND-
+create table profes_IND(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+ 
+create or replace procedure pa_profes_IND
+as
+begin
+insert into profes_IND (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'IND';
+end;
+execute pa_profes_IND;
+
+select* from profes_IND;
+
+delete from profes_IND;
+----------------------------------------------Ingeniería en Energias Renovables--IER--
+create table profes_IER(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+ 
+create or replace procedure pa_profes_IER
+as
+begin
+insert into profes_IER (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'IER';
+end;
+
+execute pa_profes_IER;
+
+select* from profes_IER;
+
+delete from profes_IER;
+----------------------------------------------Ingeniería en Administración--IAD----
+create table profes_IAD(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+ 
+create or replace procedure pa_profes_IAD
+as
+begin
+insert into profes_IAD (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'IAD';
+end;
+
+execute pa_profes_IAD;
+
+select* from profes_IAD;
+
+delete from profes_IAD;
+----------------------------------------------Ingeniería en Sistemas Automotrices--ISA--
+create table profes_ISA(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+ 
+create or replace procedure pa_profes_ISA
+as
+begin
+insert into profes_ISA (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem 
+where Carrera = 'ISA';
+end;
+
+execute pa_profes_ISA;
+
+select* from profes_ISA;
+
+delete from profes_ISA;
+----------------------------------------------Ingeniería Ambiental--IA-
+ create table profes_IA(id number not null unique,
+Num_empleado number (9) ,
+Nombre_completo varchar2 (60),
+Carrera varchar2 (30),
+Nombre_clase varchar  (60),
+grupo varchar (5));
+ 
+create or replace procedure pa_profes_IA
+as
+begin
+insert into profes_IA (id, Num_empleado, Nombre_completo, Carrera, Nombre_clase,grupo)
+select id, Num_empleado, Nombre | |' '| | Apell_pa | | ' ' | |  Apell_ma, Carrera, Nombre_clase,grupo  from profesores_tesoem  
+where Carrera = 'IA';
+end;
+
+execute pa_profes_IA;
+
+select * from profes_IA;
+
+delete from profes_IA; 
+ ------------Here ends the second exercise
+--------Alumnos con beca al 100% 
+create table ciego_porciento ( id number (3) unique,
+Matricula number (9),
+Nombre_Alumno varchar2 (60),
+Carrera varchar2 (30),
+Semestre number (2),
+Check (Semestre <=9),
+Promedio number (3)); --CREAMOS LA TABLA CIEN PORCIENTO CON ESOS ATRIBUTOS
+
+create or replace PROCEDURE pa_cien_porciento --CREAMOS EL PROCEDIMIENTO
+as
+begin
+insert into ciego_porciento (id, matricula, Nombre_Alumno, Carrera, Semestre, Promedio) --VAMOS A INSERTAR ESTOS DATOS EN LA TABLA 
+select id, Matricula, Nombre ||' '|| Apell_pa ||' '||  Apell_ma, Carrera, Semestre, Promedio from alum_tesoharvard --VAMOS A TOMAR LOS DATOS DE LA TABLA PRINCIPAL DONDE ESTAN TODOS LOS ALUMNOS
+where Promedio >=95; --Y SOLO SE VAN A INSERTAR EN LA TABLA CIEGO_PORCIENTO CUANDO SE CUMPLA QUE SU PROMEDIO SEA IGUAL AL 95 DE PROMEDIO Y ASI CON CADA PROMEDIO DIFERENTE
+end;
+
+execute pa_cien_porciento; --EJECUTAMOS EL PROCEDIMIENTO
+
+select* from ciego_porciento; --MOSTRAMOS LA TABLA 
+
+delete from ciego_porciento; --BORRAMOS EL CONTENIDO
+drop table ciego_porciento; --BORAMOS LA TABLA 
+-------Alumnos con beca al 75% 
+create table chechentaandchinco_porciento ( id number (3) unique,
+Matricula number (9),
+Nombre_Alumno varchar2 (60),
+Carrera varchar2 (30),
+Semestre number (2),
+Check (Semestre <=9),
+Promedio number (3));
+
+create or replace PROCEDURE pa_setentaycinco_porciento
+as
+begin
+insert into chechentaandchinco_porciento (id, matricula, Nombre_Alumno, Carrera, Semestre, Promedio)
+select id, Matricula, Nombre ||' '|| Apell_pa ||' '||  Apell_ma, Carrera, Semestre, Promedio  from alum_tesoharvard 
+where Promedio >=92 and Promedio <95;
+end;
+
+execute pa_setentaycinco_porciento;
+
+select* from chechentaandchinco_porciento;
+
+delete from chechentaandchinco_porciento;
+
+ ------------------------------------------------------Alumnos con beca al 50% de aprovechamiento-----90-91--------------------------------------------------------------------
+create table chincuenta_porciento ( id number (3) unique,
+Matricula number (9),
+Nombre_Alumno varchar2 (60),
+Carrera varchar2 (30),
+Semestre number (2),
+Check (Semestre <=9),
+Promedio number (3));
+
+create or replace PROCEDURE pa_cincuenta_porciento
+as
+begin
+insert into chincuenta_porciento  (id, matricula, Nombre_Alumno, Carrera, Semestre, Promedio)
+select id, Matricula, Nombre ||' '|| Apell_pa ||' '||  Apell_ma, Carrera, Semestre, Promedio  from alum_tesoharvard 
+where Promedio >=90 and Promedio <92;
+end;
+
+execute pa_cincuenta_porciento;
+
+select* from chincuenta_porciento;
+
+delete from chincuenta_porciento ;
+------Alumnos con beca al 35%
+create table trenzasandchinco_porciento ( id number (3) unique,
+Matricula number (9),
+Nombre_Alumno varchar2 (60),
+Carrera varchar2 (30),
+Semestre number (2),
+Check (Semestre <=9),
+Promedio number (3));
+
+create or replace PROCEDURE pa_treintaycinco_porciento
+as
+begin
+insert into trenzasandchinco_porciento (id, matricula, Nombre_Alumno, Carrera, Semestre, Promedio)
+select id, Matricula, Nombre ||' '|| Apell_pa ||' '||  Apell_ma, Carrera, Semestre, Promedio  from alum_tesoharvard
+where Promedio >=87 and Promedio <90;
+end;
+
+execute pa_treintaycinco_porciento;
+
+select* from trenzasandchinco_porciento;
+
+delete from trenzasandchinco_porciento;
+-----Alumnos con beca al 25% 
+create table benitoandchinco ( id number (3) unique,
+Matricula number (9),
+Nombre_Alumno varchar2 (60),
+Carrera varchar2 (30),
+Semestre number (2),
+Check (Semestre <=9),
+Promedio number (3));
+
+create or replace PROCEDURE pa_veinticinco_porciento
+as
+begin
+insert into benitoandchinco (id, matricula, Nombre_Alumno, Carrera, Semestre, Promedio)
+select id, Matricula, Nombre ||' '|| Apell_pa ||' '||  Apell_ma, Carrera, Semestre, Promedio  from alum_tesoharvard 
+where Promedio >=84 and Promedio <87;
+end;
+
+execute pa_veinticinco_porciento;
+
+select* from benitoandchinco;
+
+delete from benitoandchinco;
+----Alumnos con beca al 10% de aprovechamiento-
+create table diez_porciento ( id number (3) unique,
+Matricula number (9),
+Nombre_Alumno varchar2 (60),
+Carrera varchar2 (30),
+Semestre number (2),
+Check (Semestre <=9),
+Promedio number (3));
+
+create or replace PROCEDURE pa_diez_porciento
+as
+begin
+insert into diez_porciento (id, matricula, Nombre_Alumno, Carrera, Semestre, Promedio)
+select id, Matricula, Nombre ||' '|| Apell_pa ||' '||  Apell_ma, Carrera, Semestre, Promedio  from alum_tesoharvard
+where Promedio >=80 and Promedio <84;
+end;
+
+execute pa_diez_porciento;
+
+select* from diez_porciento;
+
+delete from diez_porciento;
+------Alumnos sin beca de aprovechamiento--
+create table cero_porciento ( id number (3) unique,
+Matricula number (9),
+Nombre_Alumno varchar2 (60),
+Carrera varchar2 (30),
+Semestre number (2),
+Check (Semestre <=9),
+Promedio number (3));
+
+create or replace PROCEDURE pa_cero_porciento
+as
+begin
+insert into cero_porciento (id, matricula, Nombre_Alumno, Carrera, Semestre, Promedio)
+select id, Matricula, Nombre ||' '|| Apell_pa ||' '||  Apell_ma, Carrera, Semestre, Promedio  from alum_tesoharvard
+where Promedio <80;
+end;
+
+execute pa_cero_porciento;
+
+select* from cero_porciento;
+
+delete from cero_porciento;
+-----------------------------------------------------------Here end the third exercise---------------------------------------------------------------------
